@@ -11,7 +11,7 @@ const api = axios.create({
 
 export const detectDisease = async (formData) => {
   try {
-    console.log("Sending request to:", API_BASE_URL_DEVICE + "/detect");
+    console.log("Sending request to!:", API_BASE_URL_DEVICE + "/detect");
     console.log("FormData:", formData);
 
     const response = await api.post("/detect", formData);
