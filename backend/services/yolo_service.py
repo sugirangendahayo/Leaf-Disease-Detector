@@ -8,10 +8,11 @@ class YOLOService:
     
     def detect_diseases(self, image):
         if self.model is None:
-            # Return dummy data for demo when model is not available
+            # Return demo data - this is NOT real disease detection
+            print("🚨 WARNING: Using demo data - no plant disease model loaded")
             return [
                 {
-                    'label': 'leaf_rust',
+                    'label': 'demo_leaf_rust',
                     'confidence': 0.85
                 }
             ]
