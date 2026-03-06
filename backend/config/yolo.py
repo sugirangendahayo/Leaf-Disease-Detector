@@ -3,21 +3,17 @@ import os
 
 class YOLOConfig:
     def __init__(self):
-        self.model_path = os.path.join(os.path.dirname(__file__), '..', 'weights', 'leaf_disease.pt')
-        self.model = None
-        self.load_model()
-    
-    def load_model(self):
-        try:
-            self.model = YOLO(self.model_path)
-            print(f"YOLO model loaded successfully from {self.model_path}")
-        except Exception as e:
-            print(f"Error loading YOLO model: {e}")
-            # For demo purposes, create a dummy model if real model doesn't exist
-            self.model = None
-    
-    def get_model(self):
-        return self.model
+        self.model_path = "weights/leaf_disease.pt"
+        self._model = None
 
-# Global instance
+    def get_model(self):
+        if self._model is None:
+            if os.path.exists(self.model_path):
+                print(f"Loading leaf disease model from {self.model_path}")
+                self._model = YOLO(self.model_path)
+            else:
+                print(f"Model not found at {self.model_path}")
+                print("Run downloaded_model.py or copy trained model there.")
+        return self._model
+
 yolo_config = YOLOConfig()

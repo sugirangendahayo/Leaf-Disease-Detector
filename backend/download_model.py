@@ -1,15 +1,23 @@
+python downloaded_model.py
+
 from ultralytics import YOLO
 import os
-import shutil
 
-os.makedirs("weights", exist_ok=True)
+def verify_model(model_path="weights/leaf_disease.pt"):
+    if not os.path.exists(model_path):
+        print(f"Model not found at {model_path}")
+        print("Copy your trained leaf_disease.pt to the weights/ folder")
+        return False
 
-print("Downloading YOLOv8 model...")
+    print(f"Loading model from {model_path}...")
+    model = YOLO(model_path)
 
-# Downloads automatically, no account needed
-model = YOLO("yolov8n.pt")
+    print("\nModel classes:")
+    for i, name in model.names.items():
+        print(f"  {i}: {name}")
 
-shutil.copy("yolov8n.pt", "weights/leaf_disease.pt")
+    print(f"\nModel ready! Detects {len(model.names)} classes.")
+    return True
 
-print("Model saved to weights/leaf_disease.pt")
-print("Your app is ready to run!")
+if __name__ == "__main__":
+    verify_model()
