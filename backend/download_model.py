@@ -11,5 +11,5 @@ model = YOLO("yolov8n.pt")
 
 shutil.copy("yolov8n.pt", "weights/leaf_disease.pt")
 
-print("✅ Model saved to weights/leaf_disease.pt")
-print("✅ Your app is ready to run!")
+print("Model saved to weights/leaf_disease.pt")
+print("Your app is ready to run!")
